@@ -34,17 +34,18 @@ export class ThirdQuestion extends PureComponent {
     }
 
     render() {
-        const disabled = !this.state.date; 
+        const { date, price } = this.state;
+        const disabled = !date; 
         return (
             <>
                 <label>
                     When will you probably buy a new computer, and how much would you spend?
                 </label>
                 <br />
-                <input type="date" onChange={this.handleDate} value={this.state.date} /><br/>
-                <select onChange={this.handleDropDown} value={this.state.price} name="price">
-                    {PRICES.map((price) => (
-                        <option key={price} value={price}>{price}</option>
+                <input type="date" onChange={this.handleDate} value={date} /><br/>
+                <select onChange={this.handleDropDown} value={price} name="price">
+                    {PRICES.map((priceValue) => (
+                        <option key={priceValue} value={priceValue}>{priceValue}</option>
                     ))}
                 </select>
                 <button onClick={this.handlePreviousStep}>Previous</button>

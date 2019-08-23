@@ -31,7 +31,7 @@ export class Questionnaire extends PureComponent {
     }
 
     updateData = (value, step) => {
-        switch(step){
+        switch (step) {
             case 0:
                 this.setState(() => ({
                     system: value.system,
@@ -55,7 +55,14 @@ export class Questionnaire extends PureComponent {
     }
 
     render() {
-        const { active } = this.state;
+        const {
+            active,
+            price,
+            date,
+            system,
+            subSystem,
+            hardware,
+        } = this.state;
 
         return (
             <>
@@ -72,28 +79,28 @@ export class Questionnaire extends PureComponent {
                 </Stepper>
                 {active === 0 && <FirstQuestion
                     handleNext={this.handleNext}
-                    system={this.state.system}
-                    subSystem={this.state.subSystem}
+                    system={system}
+                    subSystem={subSystem}
                 />}
                 {active === 1 && <SecondQuestion
                     handleNext={this.handleNext}
                     handlePrevious={this.handlePrevious}
-                    hardware={this.state.hardware}
+                    hardware={hardware}
                 />
                 }
                 {active === 2 && <ThirdQuestion
                     handleNext={this.handleNext}
                     handlePrevious={this.handlePrevious}
-                    date={this.state.date}
-                    price={this.state.price}
+                    date={date}
+                    price={price}
                 />
                 }
                 {active === 3 && <Answers
-                    date={this.state.date}
-                    price={this.state.price}
-                    system={systemIdToString(this.state.system)}
-                    subSystem={this.state.subSystem}
-                    hardware={hardwareIdToString(this.state.hardware)}
+                    date={date}
+                    price={price}
+                    system={systemIdToString(system)}
+                    subSystem={subSystem}
+                    hardware={hardwareIdToString(hardware)}
                 />}
             </>
         );
